@@ -8,6 +8,5 @@ export const AppStyle = styled.div`
         max-width: 100% ;
         position: fixed;
         bottom: 0;
-
     }
 `

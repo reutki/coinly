@@ -5,6 +5,7 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
+
 export function Navigation() {
   const [value, setValue] = React.useState("trending");
 
