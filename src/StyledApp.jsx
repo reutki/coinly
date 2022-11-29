@@ -5,7 +5,7 @@ export const AppStyle = styled.div`
     height:100vh;
     background-color: black;
     .MuiBottomNavigation-root{
-        max-width: 100% ;
+        width: 100% ;
         position: fixed;
         bottom: 0;
     }
