@@ -31,6 +31,7 @@ function App() {
             icon={<TrendingUpIcon />}
           />
         </Link>
+
         <Link to='/exchange'>
 
           <BottomNavigationAction
