@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 
 export const CoinStyledScheme = styled.div`
+.MuiPaper-root{
+    margin-bottom: 10px;
+}
     .MuiCardActionArea-root{
         display: grid;
         grid-template-columns: max-content 40% 20% max-content;
