@@ -11,18 +11,15 @@ import { Trending } from '../components/Trending/index'
 import { Exchange } from '../components/Exchange/index'
 import axios from 'axios';
 
+
 function App() {
+
   const [value, setValue] = useState("trending");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   return (
-
-
     <AppStyle >
-
-
       <BottomNavigation
         value={value}
         onChange={handleChange}>
