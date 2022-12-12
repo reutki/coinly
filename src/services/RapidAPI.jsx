@@ -13,12 +13,14 @@ export const cryptoApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://coinranking1.p.rapidapi.com' }),
   endpoints: (builder) => ({
     getCryptos: builder.query({
-      query: (count) => createRequest(`/coins?limit=50`),
-      // query: (count) => createRequest(`/coins?limit=${count}`),
+      query: (count) => createRequest(`/coins?limit=100`),
+    }),
+    getMarkets: builder.query({
+      query: (count) => createRequest(`/markets?limit=50`,),
     }),
   }),
 });
 
 export const {
-  useGetCryptosQuery,
+  useGetCryptosQuery, useGetMarketsQuery
 } = cryptoApi;
