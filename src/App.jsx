@@ -13,7 +13,6 @@ import axios from 'axios';
 
 
 function App() {
-
   const [value, setValue] = useState("trending");
   const handleChange = (event, newValue) => {
     setValue(newValue);

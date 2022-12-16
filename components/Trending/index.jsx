@@ -3,20 +3,24 @@ import { Typography } from '@mui/material'
 import { StyledTrendingLayout } from './styled'
 import { CoinSimpleScheme } from '../CoinSimpleScheme'
 import { useGetCryptosQuery, useGetMarketsQuery } from '../../src/services/RapidAPI'
+import { useGetHistoryQuery } from '../../src/services/GetHistory'
 import { Tab, Tabs } from '@mui/material'
 
 export const Trending = () => {
-  const { data, isLoading } = useGetCryptosQuery();
-  const { markets, isLoadingMarkets } = useGetMarketsQuery();
-  const coins = data?.data?.coins
+  const { data: cryptosData, error: cryptosError, isLoading: cryptosIsLoading } = useGetCryptosQuery({
+    // Additional query options for the /coins endpoint here
+  });
+  const { data: marketData, error: marketError, isLoading: marketIsLoading } = useGetHistoryQuery({
+    // Additional query options for the /coins endpoint here
+  });
+
+
+  const coins = cryptosData?.data?.coins
   const [tab, setTab] = useState(0);
-
   const handleChange = (event, value) => {
+    console.log(marketData)
     setTab(value);
-    console.log(markets)
   };
-
-
   return (
     < StyledTrendingLayout >
       <Typography variant="body1" fontWeight={700}>Trending Coins</Typography>
@@ -33,7 +37,6 @@ export const Trending = () => {
               key={coin.uuid}
               icon={coin.iconUrl}
               name={coin.name}
-              // symbol={coin.symbol}
               price={coin.price}
               precentage={coin.change}
             />
