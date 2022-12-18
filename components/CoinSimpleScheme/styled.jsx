@@ -20,4 +20,8 @@ export const CoinStyledScheme = styled.div`
         display: grid;
         /* margin-left: 24px; */
     }
+    .chart{
+        display: block;
+       
+    }
 `

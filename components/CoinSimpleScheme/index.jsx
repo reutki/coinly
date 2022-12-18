@@ -4,20 +4,37 @@ import { Avatar, Typography, Card, CardActionArea, Collapse, Button, IconButton,
 import { ExpandMore } from '@mui/icons-material'
 import { styled } from '@mui/material/styles';
 import millify from 'millify';
+import { useGetHistoryQuery } from '../../src/services/GetHistory';
+import { Line } from 'react-chartjs-2';
+import { LineChart } from '../Chart'
 
 
-export const CoinSimpleScheme = ({ icon, name, code, price, chart, precentage, rank }) => {
+
+export const CoinSimpleScheme = ({ icon, name, code, price, key, sparkline, precentage, rank, uuid }) => {
     const newPrice = Number(price).toFixed(2)
     const [expanded, setExpanded] = useState(false);
+    const [id, setId] = useState('');
+    const { data: historyData, error: historyError, isLoading: historyIsLoading } = useGetHistoryQuery(id);
+    // const [chart, setChart] = useState({
+    //     labels: "*",
+    //     datasets: [{
+    //         label: "*",
+    //         data: chart.map((data) => data.value)
+    //     }]
+    // })
 
-    const handleExpandClick = () => { setExpanded(!expanded) };
+    const handleExpandClick = () => {
+        setExpanded(!expanded)
+        console.log(sparkline)
+    };
     return (
         <CoinStyledScheme>
-            <Card onClick={handleExpandClick}>
+            <Card onClick={handleExpandClick} key={key}>
                 <CardActionArea>
                     <Avatar src={icon} alt='coin logo' />
                     <div className='name'>
                         <Typography variant='body1'>{rank}</Typography>
+                        <Typography variant='body1'>{key}</Typography>
                         <Typography variant='body1'>{name}</Typography>
                         <Typography variant='body2'>{code}</Typography>
                     </div>
@@ -30,8 +47,22 @@ export const CoinSimpleScheme = ({ icon, name, code, price, chart, precentage, r
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
                         <Typography>Chart Here</Typography>
+                        {expanded
+                            ? <>
+                                <Line className='chart' data={{
+                                    labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+                                    datasets: [{
+                                        data: [...sparkline],
+                                        borderColor: 'red'
+
+                                    }],
+                                }
+                                } width={10} height={10} />
+                            </> : null}
                     </CardContent>
                 </Collapse>
+
+                `
             </Card >
         </ CoinStyledScheme>
     )
