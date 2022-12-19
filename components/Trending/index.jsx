@@ -5,7 +5,6 @@ import { CoinSimpleScheme } from '../CoinSimpleScheme'
 import { useGetCryptosQuery, useGetMarketsQuery } from '../../src/services/RapidAPI'
 import { useGetHistoryQuery } from '../../src/services/GetHistory'
 import { Tab, Tabs } from '@mui/material'
-// import { ChartData, ChartOptions } from 'chart.js'
 
 export const Trending = () => {
   const { data: cryptosData, error: cryptosError, isLoading: cryptosIsLoading } = useGetCryptosQuery({
@@ -46,14 +45,13 @@ export const Trending = () => {
         tab == 1 && coins ? coins.map((coin, index) => {
           return (
             <CoinSimpleScheme
-              uuid={coin.uuid}
               rank={coin.rank}
+              uuid={coin.uuid}
               icon={coin.iconUrl}
               name={coin.name}
-              key={coin}
-              // symbol={coin.symbol}
               price={coin.price}
               precentage={coin.change}
+              sparkline={coin.sparkline}
             />
 
           );

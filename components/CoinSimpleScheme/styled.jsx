@@ -22,6 +22,6 @@ export const CoinStyledScheme = styled.div`
     }
     .chart{
         display: block;
-       
+        
     }
 `

@@ -25,7 +25,6 @@ export const CoinSimpleScheme = ({ icon, name, code, price, key, sparkline, prec
 
     const handleExpandClick = () => {
         setExpanded(!expanded)
-        console.log(sparkline)
     };
     return (
         <CoinStyledScheme>
@@ -46,7 +45,6 @@ export const CoinSimpleScheme = ({ icon, name, code, price, key, sparkline, prec
                 </CardActionArea>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <Typography>Chart Here</Typography>
                         {expanded
                             ? <>
                                 <Line className='chart' data={{
