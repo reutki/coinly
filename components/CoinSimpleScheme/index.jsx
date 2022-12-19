@@ -1,6 +1,6 @@
 import { React, useState } from 'react'
 import { CoinStyledScheme } from './styled'
-import { Avatar, Typography, Card, CardActionArea, Collapse, Button, IconButton, CardContent } from '@mui/material'
+import { Avatar, Typography, Card, CardActionArea, Collapse, Button, IconButton, CardContent, ButtonGroup } from '@mui/material'
 import { ExpandMore } from '@mui/icons-material'
 import { styled } from '@mui/material/styles';
 import millify from 'millify';
@@ -10,18 +10,11 @@ import { LineChart } from '../Chart'
 
 
 
-export const CoinSimpleScheme = ({ icon, name, code, price, key, sparkline, precentage, rank, uuid }) => {
+export const CoinSimpleScheme = ({ icon, period, name, code, price, key, sparkline, precentage, rank, uuid }) => {
     const newPrice = Number(price).toFixed(2)
     const [expanded, setExpanded] = useState(false);
-    const [id, setId] = useState('');
-    const { data: historyData, error: historyError, isLoading: historyIsLoading } = useGetHistoryQuery(id);
-    // const [chart, setChart] = useState({
-    //     labels: "*",
-    //     datasets: [{
-    //         label: "*",
-    //         data: chart.map((data) => data.value)
-    //     }]
-    // })
+
+
 
     const handleExpandClick = () => {
         setExpanded(!expanded)
@@ -57,6 +50,7 @@ export const CoinSimpleScheme = ({ icon, name, code, price, key, sparkline, prec
                                 }
                                 } width={10} height={10} />
                             </> : null}
+
                     </CardContent>
                 </Collapse>
 

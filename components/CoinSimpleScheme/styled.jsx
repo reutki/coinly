@@ -21,7 +21,7 @@ export const CoinStyledScheme = styled.div`
         /* margin-left: 24px; */
     }
     .chart{
-        display: block;
-        
+        display: grid;
+        max-height:200px;
     }
 `
