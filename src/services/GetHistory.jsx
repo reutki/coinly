@@ -4,8 +4,6 @@ const historyApiHeaders = {
     'x-access-token': 'coinrankingfa143582e81ca88ae2c32c18a76edcc3e6705c29779b1162',
     'Access-Control-Allow-Origin': "*",
     'Content-Type': 'application/json',
-
-
 };
 const createRequest = (url) => ({ url, mode: 'no-cors' });
 

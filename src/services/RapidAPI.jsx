@@ -14,10 +14,9 @@ export const cryptoApi = createApi({
       query: (period) => createRequest(`/coins?timePeriod=${period}&?referenceCurrencyUuid=HIVsRcGKkPFtW&limit=100`),
     }),
     getMarkets: builder.query({
-      query: (count) => createRequest(`/history`),
+      query: (count) => createRequest(`/markets`),
     }),
-    getExchanges: builder.query({
-    }),
+
   }),
 });
 
