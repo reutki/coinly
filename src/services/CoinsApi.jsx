@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const coinApiHeaders = {
+    "authorization": "Apikey {c0648ddf9a71db932d832fcf18f253dc25021ff9c52919b357ea64160ef293ea}"
 
 };
 const createRequest = (url) => ({ url, mode: 'cors' });
@@ -13,7 +14,7 @@ export const coinApi = createApi({
     endpoints: (builder) => ({
 
         getExchange: builder.query({
-            query: (have, get) => createRequest(`price?fsym=${have}&tsyms=${get}`),
+            query: (response) => createRequest(`price?fsym=${response[0]}&tsyms=${response[1]}`),
         }),
     }),
 });

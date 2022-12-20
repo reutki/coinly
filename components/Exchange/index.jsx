@@ -9,21 +9,25 @@ import { useGetExchangeQuery } from '../../src/services/CoinsApi'
 
 export const Exchange = () => {
   const [amount, setAmount] = useState(0)
-  const [have, setHave] = useState('');
-  const [get, setGet] = useState('');
+  const [have, setHave] = useState('btc');
+  const [get, setGet] = useState('usd');
   const [result, setResult] = useState(null);
   const { data: coins, isLoading: coinsLoading } = useGetVSCoinsQuery();
-  const { data: exchange, isLoading: exchangeLoading } = useGetExchangeQuery(have, get);
-  console.log(exchange)
-
-
-
+  const response = [have, get]
+  const { data: exchange, isLoading: exchangeLoading } = useGetExchangeQuery(response);
   const handleHave = (event) => {
     setHave(event.target.value);
   };
   const handleGet = (event) => {
     setGet(event.target.value)
   }
+  useEffect(() => {
+    if (exchange !== null && exchange !== undefined && exchange !== '' && !exchangeLoading) {
+
+      setResult(exchange)
+
+    }
+  }, [get, have])
 
 
   return (
@@ -56,7 +60,9 @@ export const Exchange = () => {
           }) : null}
 
         </Select>
-        <Input disableUnderline={true} type='number' className='recieve' />
+        <Typography variant='body1' className='recieve'>
+          {exchange !== null && exchange !== undefined && exchange !== '' ? Object.values(exchange)[0] : null}
+        </Typography>
       </Paper >
     </ExchangeStyle >
   )
