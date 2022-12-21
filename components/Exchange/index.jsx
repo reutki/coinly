@@ -61,7 +61,7 @@ export const Exchange = () => {
 
         </Select>
         <Typography variant='body1' className='recieve'>
-          {exchange !== null && exchange !== undefined && exchange !== '' ? Object.values(exchange)[0] : null}
+          {exchange !== null && exchange !== undefined && exchange !== '' ? Object.values(exchange)[0] * amount : null}
         </Typography>
       </Paper >
     </ExchangeStyle >
