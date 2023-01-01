@@ -22,6 +22,12 @@ export const CoinStyledScheme = styled.div`
     }
     .chart{
         display: grid;
-        max-height:200px;
+        max-height:20vh;
     }
+    .chartMinimized{
+        display: grid;
+        max-width:100%;
+        max-height:100%;
+    }
+    
 `
