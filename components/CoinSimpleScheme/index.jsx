@@ -10,10 +10,9 @@ import { LineChart } from '../Chart'
 
 
 
-export const CoinSimpleScheme = ({ icon, period, name, code, price, key, sparkline, precentage, rank, uuid }) => {
+export const CoinSimpleScheme = ({ icon, period, name, code, price, key, sparkline, precentage, rank }) => {
     const newPrice = Number(price).toFixed(2)
     const [expanded, setExpanded] = useState(false);
-
 
 
     const handleExpandClick = () => {
@@ -80,8 +79,9 @@ export const CoinSimpleScheme = ({ icon, period, name, code, price, key, sparkli
 
                         width={10} height={10} />
                     <div className='price'>
-                        <Typography>{millify(newPrice)}$</Typography>
-                        <Typography>{millify(precentage)}%</Typography>
+                        <Typography variant='body1'>{millify(newPrice)}$</Typography>
+                        {precentage < 0 ? <Typography sx={{ color: 'red' }} variant='body2'>{millify(precentage)}%</Typography> :
+                            <Typography sx={{ color: 'green' }} variant='body2'>{millify(precentage)}%</Typography>}
                     </div>
                 </CardActionArea>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
@@ -103,9 +103,7 @@ export const CoinSimpleScheme = ({ icon, period, name, code, price, key, sparkli
                                             display: false
 
                                         },
-                                        // y: {
-                                        //     display: false
-                                        // }
+
                                     },
                                     plugins: {
                                         legend: {
@@ -121,6 +119,6 @@ export const CoinSimpleScheme = ({ icon, period, name, code, price, key, sparkli
 
                 `
             </Card >
-        </ CoinStyledScheme>
+        </ CoinStyledScheme >
     )
 }
