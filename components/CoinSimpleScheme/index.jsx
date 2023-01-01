@@ -79,9 +79,9 @@ export const CoinSimpleScheme = ({ icon, period, name, code, price, key, sparkli
 
                         width={10} height={10} />
                     <div className='price'>
-                        <Typography variant='body1'>{millify(newPrice)}$</Typography>
-                        {precentage < 0 ? <Typography sx={{ color: 'red' }} variant='body2'>{millify(precentage)}%</Typography> :
-                            <Typography sx={{ color: 'green' }} variant='body2'>{millify(precentage)}%</Typography>}
+                        <Typography sx={{ fontWeight: "bold" }} >{millify(newPrice)}$</Typography>
+                        {precentage < 0 && precentage !== 0 ? <Typography sx={{ color: 'red' }} variant='body2'>{millify(precentage)}%</Typography> :
+                            <Typography sx={{ color: 'green' }} variant='body2'>{millify(precentage, { precision: 3 })}%</Typography>}
                     </div>
                 </CardActionArea>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
