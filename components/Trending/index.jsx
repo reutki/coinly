@@ -53,7 +53,6 @@ export const Trending = () => {
         tab == 1 && coins ? coins.map((coin, index) => {
           return (
             <CoinSimpleScheme
-              period={period}
               rank={coin.rank}
               uuid={coin.uuid}
               icon={coin.iconUrl}
@@ -63,7 +62,7 @@ export const Trending = () => {
               sparkline={coin.sparkline}
             />
 
-          );
+          )
 
         }) : null
       }

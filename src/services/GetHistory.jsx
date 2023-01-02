@@ -2,10 +2,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const historyApiHeaders = {
     'x-access-token': 'coinrankingfa143582e81ca88ae2c32c18a76edcc3e6705c29779b1162',
-    'Access-Control-Allow-Origin': "*",
+    'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
 };
-const createRequest = (url) => ({ url, mode: 'no-cors' });
+const createRequest = (url) => ({ url, mode: 'cors' });
 
 export const historyApi = createApi({
     reducerPath: 'historyApi',
@@ -19,34 +19,14 @@ export const historyApi = createApi({
             query: (uuid) => createRequest(`/coin/${uuid}/history`),
             historyApiHeaders,
         }),
+        // getData: builder.query({
+        //     query: (uuid) => createRequest(`/coin/${uuid}`),
+        //     historyApiHeaders,
+        // }),
     }),
 });
 
 export const {
-    useGetHistoryQuery
+    useGetHistoryQuery,
+    // useGetDataQuery
 } = historyApi;
-// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-// const historyApyHeaders = {
-//     'accept': '*',
-//     'Access-Control-Allow-Origin': '*'
-// };
-// const createRequest = (url) => ({ url });
-
-// export const historyApi = createApi({
-//     reducerPath: 'historyApi',
-//     baseQuery:
-//         fetchBaseQuery({ baseUrl: 'https://api.coingecko.com/api/v3' }),
-
-//     endpoints: (builder) => ({
-//         getHistory: builder.query({
-//             query: (name) => createRequest(`/coins/${name}/market_chart?vs_currency=usd&days=90&interval=daily
-//             `),
-//             //name.tolowercase(if('' -> - ))
-//         }),
-//     }),
-// });
-
-// export const {
-//     useGetHistoryQuery
-// } = historyApi;

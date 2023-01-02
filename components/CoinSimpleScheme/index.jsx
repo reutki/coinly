@@ -1,23 +1,34 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import { CoinStyledScheme } from './styled'
-import { Avatar, Typography, Card, CardActionArea, Collapse, Button, IconButton, CardContent, ButtonGroup } from '@mui/material'
+import { Avatar, Typography, Card, CardActionArea, Collapse, Button, IconButton, CardContent, ButtonGroup, Link } from '@mui/material'
 import { ExpandMore } from '@mui/icons-material'
 import { styled } from '@mui/material/styles';
 import millify from 'millify';
-import { useGetHistoryQuery } from '../../src/services/GetHistory';
+import { useGetDataQuery } from '../../src/services/RapidAPI';
 import { Line } from 'react-chartjs-2';
 import { LineChart } from '../Chart'
 
 
 
-export const CoinSimpleScheme = ({ icon, period, name, code, price, key, sparkline, precentage, rank }) => {
-    const newPrice = Number(price).toFixed(2)
-    const [expanded, setExpanded] = useState(false);
-
-
+export const CoinSimpleScheme = ({ icon, period, name, code, price, key, sparkline, precentage, rank, uuid }) => {
     const handleExpandClick = () => {
-        setExpanded(!expanded)
+        setExpanded(!expanded);
+        if (expanded == false) {
+            setCryptoData(uuid);
+            console.log(cryptoData)
+            console.log(coinData)
+        }
     };
+    const newPrice = Number(price).toFixed(2)
+    const [cryptoData, setCryptoData] = useState(uuid);
+    const { data: coinData, error, isLoading } = useGetDataQuery(cryptoData);
+    const [expanded, setExpanded] = useState(false);
+    const coinDetails = coinData?.data?.coin
+    console.log(coinDetails)
+
+
+
+
     return (
         <CoinStyledScheme>
             <Card onClick={handleExpandClick} key={key}>
@@ -112,7 +123,56 @@ export const CoinSimpleScheme = ({ icon, period, name, code, price, key, sparkli
 
                                     }
                                 }} width={10} height={10} />
+                                {expanded == true && uuid !== undefined && uuid !== null ?
+                                    <><Typography>Rank:{coinDetails?.rank}</Typography>
+                                        <Typography>
+                                            Current-Supply:{coinDetails?.supply?.circulating}
+                                        </Typography>
+                                        <Typography>
+                                            Total-Supply:{coinDetails?.supply.total}
+                                        </Typography>
+                                        <Typography>
+                                            CurrentPrice:{coinDetails?.price}
+                                        </Typography>
+                                        <Typography>
+                                            Market Cap:{coinDetails?.marketCap}
+                                        </Typography>
+                                        <Typography>
+                                            All Time High:{coinDetails?.allTimeHigh
+                                            [0]} Date:{coinDetails?.allTimeHigh
+                                            [1]}
+                                        </Typography>
+                                        <Typography>
+                                            Description:{coinDetails?.description}
+                                        </Typography>
+                                        <Typography>
+                                            Listed:{coinDetails?.listedAt}
+                                        </Typography>
+                                        <Typography>
+                                            Name:{coinDetails?.listedAt}
+                                        </Typography>
+                                        <Typography>
+                                            Price to BTC:{coinDetails?.btcPrice}
+                                        </Typography>
+                                        <Typography>
+                                            Website:<Link>
+                                                {coinDetails?.websiteUrl}
+                                            </Link>
+                                        </Typography>
+
+
+
+
+
+
+
+                                    </>
+
+                                    : null}
+
+
                             </> : null}
+
 
                     </CardContent>
                 </Collapse>

@@ -16,10 +16,14 @@ export const cryptoApi = createApi({
     getMarkets: builder.query({
       query: (count) => createRequest(`/markets`),
     }),
+    getData: builder.query({
+      query: (uuid) => createRequest(`/coin/${uuid}`),
+
+    }),
 
   }),
 });
 
 export const {
-  useGetCryptosQuery, useGetMarketsQuery
+  useGetCryptosQuery, useGetMarketsQuery, useGetDataQuery
 } = cryptoApi;
