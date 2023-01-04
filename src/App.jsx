@@ -4,6 +4,7 @@ import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import WalletIcon from '@mui/icons-material/Wallet';
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom'
 import { Profile } from '../components/Profile/index'
@@ -42,7 +43,7 @@ function App() {
           <BottomNavigationAction
             label="Profile"
             value="profile"
-            icon={<AccountCircleIcon />}
+            icon={<WalletIcon />}
           />
         </Link>
       </BottomNavigation>

@@ -7,6 +7,7 @@ import millify from 'millify';
 import { useGetDataQuery } from '../../src/services/RapidAPI';
 import { Line } from 'react-chartjs-2';
 import { LineChart } from '../Chart'
+import DOMPurify from 'dompurify';
 
 
 
@@ -22,6 +23,7 @@ export const CoinSimpleScheme = ({ icon, period, name, code, price, key, sparkli
     const newPrice = Number(price).toFixed(2)
     const [cryptoData, setCryptoData] = useState(uuid);
     const { data: coinData, error, isLoading } = useGetDataQuery(cryptoData);
+
     const [expanded, setExpanded] = useState(false);
     const coinDetails = coinData?.data?.coin
     console.log(coinDetails)
@@ -143,7 +145,7 @@ export const CoinSimpleScheme = ({ icon, period, name, code, price, key, sparkli
                                             [1]}
                                         </Typography>
                                         <Typography>
-                                            Description:{coinDetails?.description}
+                                            Description:<p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(coinDetails?.description) }}></p>
                                         </Typography>
                                         <Typography>
                                             Listed:{coinDetails?.listedAt}
