@@ -73,6 +73,7 @@ export const Exchange = () => {
             className="send"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
+            onKeyDown={(e) => e.preventDefault()}
           />
           <Select
             disableUnderline

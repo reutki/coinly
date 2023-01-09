@@ -4,7 +4,8 @@ export const ExchangeStyle = styled.div`
     display: grid;
     grid-template-rows: max-content max-content max-content;
     height: 100vh;
-    margin:0 10px;
+    max-width: 400px;
+    margin:0 auto;
     .MuiButtonBase-root{
         background-color: transparent;
     }
@@ -45,7 +46,7 @@ export const ButtonLine = styled.div`
     button{
         font-size: 1rem;
         border-radius: 50% !important;
-        max-width: max-content;
+        /* max-width:100%; */
     }
     
 `
