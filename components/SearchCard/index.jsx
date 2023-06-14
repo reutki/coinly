@@ -2,12 +2,13 @@ import React from 'react';
 import { Avatar, Text, Card } from '@nextui-org/react';
 import millify from 'millify';
 
+
 export const SearchCard = ({ icon, name, price, rank, uuid, isModal, handleCardClick }) => {
     const newPrice = Number(price).toFixed(2);
 
     const handleClick = () => {
         if (handleCardClick) {
-            handleCardClick(uuid); // Pass the uuid of the clicked coin to the parent component
+            handleCardClick(uuid);
         }
     };
 
@@ -30,3 +31,4 @@ export const SearchCard = ({ icon, name, price, rank, uuid, isModal, handleCardC
         </Card>
     );
 };
+

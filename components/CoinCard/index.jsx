@@ -18,12 +18,12 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import InfoIcon from '@mui/icons-material/Info';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import LanguageIcon from '@mui/icons-material/Language';
-export const CoinCard = ({ icon, name, price, sparkline, precentage, favorites, favoritesHook, rank, uuid, setPeriod }) => {
+export const CoinCard = ({ icon, name, price, sparkline, precentage, isSearch, favorites, favoritesHook, rank, uuid, setPeriod }) => {
     const newPrice = Number(price).toFixed(2);
     const { setVisible, bindings } = useModal();
     const [cryptoData, setCryptoData] = useState('');
     const { data: coinData } = useGetDataQuery(cryptoData);
-    const [expanded, setExpanded] = useState(false);
+    const [expanded, setExpanded] = useState(isSearch ? true : false);
     const coinDetails = coinData?.data?.coin;
     const [removeCoin] = useRemoveFavoritesMutation();
     const [addCoin] = useAddFavoritesMutation();
@@ -93,37 +93,41 @@ export const CoinCard = ({ icon, name, price, sparkline, precentage, favorites, 
                         {expanded && cryptoData !== null | undefined | ''
                             ? <>
                                 <LineChart chartData={sparkline} />
-                                <Button.Group
-                                    className="buttongroup"
-                                    bordered
-                                    color="primary"
-                                    size={
-                                        window.innerWidth < 320
-                                            ? "xs"
-                                            : window.innerWidth < 425
-                                                ? "sm"
-                                                : window.innerWidth < 768
-                                                    ? "md"
-                                                    : window.innerWidth < 1024
-                                                        ? "lg"
-                                                        : window.innerWidth > 1024
-                                                            ? "xl"
-                                                            : "xl"
-                                    }
-                                >
-                                    <Button value={"24h"} onPress={() => setPeriod("24h")}>
-                                        24h
-                                    </Button>
-                                    <Button value={"30d"} onPress={() => setPeriod("30d")}>
-                                        30d
-                                    </Button>
-                                    <Button value={"3m"} onPress={() => setPeriod("3m")}>
-                                        3m
-                                    </Button>
-                                    <Button value={"1y"} onPress={() => setPeriod("1y")}>
-                                        1y
-                                    </Button>
-                                </Button.Group>
+                                {!isSearch &&
+
+                                    <Button.Group
+                                        className="buttongroup"
+                                        bordered
+                                        color="primary"
+                                        size={
+                                            window.innerWidth < 320
+                                                ? "xs"
+                                                : window.innerWidth < 425
+                                                    ? "sm"
+                                                    : window.innerWidth < 768
+                                                        ? "md"
+                                                        : window.innerWidth < 1024
+                                                            ? "lg"
+                                                            : window.innerWidth > 1024
+                                                                ? "xl"
+                                                                : "xl"
+                                        }
+                                    >
+                                        <Button value={"24h"} onPress={() => setPeriod("24h")}>
+                                            24h
+                                        </Button>
+                                        <Button value={"30d"} onPress={() => setPeriod("30d")}>
+                                            30d
+                                        </Button>
+                                        <Button value={"3m"} onPress={() => setPeriod("3m")}>
+                                            3m
+                                        </Button>
+                                        <Button value={"1y"} onPress={() => setPeriod("1y")}>
+                                            1y
+                                        </Button>
+                                    </Button.Group>
+                                }
+
                                 {favorites?.includes(uuid) && favoriteItem ?
                                     <Button onPress={handleRemoveFavorite} className='button-modal'>Remove from favorites</Button>
                                     :
