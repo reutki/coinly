@@ -7,6 +7,12 @@ export const StyledTrendingLayout = styled.div`
         display: grid;
         grid-template-columns: 1fr max-content max-content;
     }
+    .search{
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1vw;
+    }
 `
 export const StyledButtonBackToTop = styled.div`
         button{

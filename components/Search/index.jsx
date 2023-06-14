@@ -32,7 +32,7 @@ export const Search = () => {
     return (
         <>
 
-            <SearchIcon onClick={() => setVisible(true)} />
+            <SearchIcon fontSize='large' onClick={() => setVisible(true)} />
             <Modal fullScreen closeButton {...bindings}>
                 <Modal.Body>
                     <>
