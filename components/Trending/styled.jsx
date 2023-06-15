@@ -2,7 +2,9 @@ import styled from "@emotion/styled";
 
 export const StyledTrendingLayout = styled.div`
     padding: 20px 15px;
-    
+    .loadButton{
+        margin-bottom: 60px;
+    }
     .top_bar_trending{
         display: grid;
         grid-template-columns: 1fr max-content max-content;

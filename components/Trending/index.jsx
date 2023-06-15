@@ -109,7 +109,7 @@ export const Trending = () => {
       </div>
       {loadedCoins.length > 0 && <>{CoinsCards}</>}
       {end < coins.length && (
-        <Button
+        <Button className="loadButton"
           onPress={() => {
             setStart(0);
             setEnd(end + 10);
